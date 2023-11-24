@@ -34,13 +34,16 @@ public class MainActivity extends AppCompatActivity {
     private Button nextButton = null;
     private HorizontalScrollView pageScroll = null;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         busListView = findViewById(R.id.listView);
+        // membuat sample list
+        listBus = Bus.sampleBusList(30);
+        listSize = listBus.size();
 
-        listBus = Bus.sampleBusList(9);
         BusArrayAdapter arrayAdapter = new BusArrayAdapter(this, listBus);
 
         busListView.setAdapter(arrayAdapter);
@@ -49,9 +52,7 @@ public class MainActivity extends AppCompatActivity {
         prevButton = findViewById(R.id.prev_page);
         nextButton = findViewById(R.id.next_page);
         pageScroll = findViewById(R.id.page_number_scroll);
-// membuat sample list
-        listBus = Bus.sampleBusList(20);
-        listSize = listBus.size();
+
 // construct the footer
         paginationFooter();
         goToPage(currentPage);
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout ll = findViewById(R.id.btn_layout);
         btns = new Button[noOfPages];
 
-        if (noOfPages <= 5) {
+        if (noOfPages <= 3) {
             ((FrameLayout.LayoutParams) ll.getLayoutParams()).gravity = Gravity.CENTER;
         }
 
@@ -121,12 +122,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void scrollToItem(Button item) {
-        int scrollX = item.getLeft() - (pageScroll.getWidth() - item.getWidth()) /
-                2;
+        int scrollX = item.getLeft() - (pageScroll.getWidth() - item.getWidth()) / 3;
         pageScroll.smoothScrollTo(scrollX, 0);
     }
 
-
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.action_bar, menu);
