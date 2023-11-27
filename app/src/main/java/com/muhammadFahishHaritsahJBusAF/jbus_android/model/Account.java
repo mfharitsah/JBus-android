@@ -8,7 +8,7 @@ public class Account extends Serializable {
     public String email;
     public String password;
     public double balance;
-//    public Renter company;
+    public Renter company;
     public static ArrayList<Account> accounts = new ArrayList<>();
 
 //    public Account(String username, String email, String password, double balance) {

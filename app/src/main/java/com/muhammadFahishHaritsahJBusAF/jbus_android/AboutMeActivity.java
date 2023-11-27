@@ -3,6 +3,7 @@ package com.muhammadFahishHaritsahJBusAF.jbus_android;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -22,11 +23,9 @@ import retrofit2.Response;
 public class AboutMeActivity extends AppCompatActivity {
 
     private TextView initial, nameTop, emailTop, nameData, emailData, balanceData;
+    private TextView registerRenter;
     private EditText inputAmount;
     private Button topUpButton;
-    private String username;
-    private String email;
-    private String balance;
     private Context mContext;
     private BaseApiService mApiService;
 
@@ -36,9 +35,11 @@ public class AboutMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_me);
 
+        //API service
         mContext = this;
         mApiService = UtilsApi.getApiService();
 
+        //User data
         initial = findViewById(R.id.initial);
         nameTop = findViewById(R.id.name_top);
         emailTop = findViewById(R.id.email_top);
@@ -46,8 +47,12 @@ public class AboutMeActivity extends AppCompatActivity {
         emailData = findViewById(R.id.email_data);
         balanceData = findViewById(R.id.balance);
 
+        //Top Up service
         inputAmount = findViewById(R.id.topup_amount);
         topUpButton = findViewById(R.id.topup_button);
+
+        //Register Renter
+        registerRenter = findViewById(R.id.button);
 
 
         if (LoginActivity.loggedAccount != null) {
@@ -57,6 +62,34 @@ public class AboutMeActivity extends AppCompatActivity {
             nameData.setText(LoginActivity.loggedAccount.name);
             emailData.setText(LoginActivity.loggedAccount.email);
             balanceData.setText("IDR " + String.valueOf(LoginActivity.loggedAccount.balance));
+        }
+
+        //Check renter status
+        if (LoginActivity.loggedAccount.company == null) {
+            // Not a renter - Show a message prompting to register as a renter
+            TextView textView = findViewById(R.id.status_text);
+            textView.setText("Interest develop your own buses?");
+
+            // Implement a listener for a component to navigate to the registration page
+            Button buttonStatus = findViewById(R.id.button);
+            buttonStatus.setText("Register your company!");
+
+            registerRenter.setOnClickListener(e -> {
+                Intent intent = new Intent(this, RegisterRenterActivity.class);
+                startActivity(intent);
+            });
+        } else {
+            TextView textView = findViewById(R.id.status_text);
+            textView.setText("Manage your buses now?");
+
+            // Implement a listener for a component to navigate to the registration page
+            Button buttonStatus = findViewById(R.id.button);
+            buttonStatus.setText("Manage now");
+
+            registerRenter.setOnClickListener(e -> {
+                Intent intent = new Intent(this, ManageBusActivity.class);
+                startActivity(intent);
+            });
         }
 
         topUpButton.setOnClickListener(e -> {

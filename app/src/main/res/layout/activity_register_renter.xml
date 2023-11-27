@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:paddingTop="150dp"
-    android:background="@drawable/register_bg"
-    tools:context=".RegisterActivity">
+    android:gravity=""
+    android:paddingTop="170sp"
+    tools:context=".RegisterRenterActivity"
+    android:background="@drawable/register_renter"
+    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -18,7 +17,6 @@
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
         android:background="@drawable/custom_edittext"
-        android:layout_marginTop="0dp"
         >
 
         <LinearLayout
@@ -29,15 +27,13 @@
             android:padding="24dp">
 
             <TextView
-                android:id="@+id/intermezzo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Open the door to anywhere"
+                android:text="Input your company information"
                 android:textAlignment="center"
                 android:textColor="@color/sky"
                 android:textSize="20sp"
-                android:textStyle="italic"
-                />
+                android:textStyle="italic" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -47,37 +43,17 @@
                 >
 
                 <EditText
-                    android:id="@+id/username"
+                    android:id="@+id/company_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_edittext"
-                    android:drawableStart="@drawable/baseline_person_24"
-                    android:drawablePadding="8dp"
-                    android:hint="Username"
+                    android:drawableStart="@drawable/company"
                     android:textColor="@color/black"
-                    android:textColorHighlight="@color/cardview_dark_background" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="15dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
-
-                <EditText
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/custom_edittext"
-                    android:drawableStart="@drawable/baseline_email_24"
+                    android:textColorHighlight="@color/cardview_dark_background"
                     android:drawablePadding="8dp"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/black"
-                    android:textColorHighlight="@color/cardview_dark_background" />
+                    android:hint="Company Name"
+                    android:inputType="text"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,22 +61,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginTop="15dp"
-                app:passwordToggleEnabled="true"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
                 >
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/company_phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_edittext"
-                    android:drawableStart="@drawable/baseline_lock_24"
-                    android:drawablePadding="8dp"
-                    android:hint="Password"
-                    android:inputType="textPassword"
+                    android:drawableStart="@drawable/phone"
                     android:textColor="@color/black"
-                    android:textColorHighlight="@color/cardview_dark_background" />
+                    android:textColorHighlight="@color/cardview_dark_background"
+                    android:drawablePadding="8dp"
+                    android:hint="Phone Number"
+                    android:inputType="text"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="15dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                >
+
+                <EditText
+                    android:id="@+id/company_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_edittext"
+                    android:drawableStart="@drawable/location"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/cardview_dark_background"
+                    android:drawablePadding="8dp"
+                    android:hint="Address"
+                    android:inputType="text"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,9 +107,8 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/sky"
-                android:text="REGISTER"
-                android:textStyle="bold"
-                android:textSize="24sp"
+                android:text="Register"
+                android:textSize="25sp"
                 app:cornerRadius="20dp" />
 
         </LinearLayout>
