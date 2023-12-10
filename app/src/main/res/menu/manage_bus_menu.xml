@@ -10,4 +10,12 @@
         app:actionViewClass="com.google.android.material.button.MaterialButton"
         app:showAsAction="collapseActionView|always"
         />
+
+    <item
+        android:id="@+id/add_schedule_button"
+        android:icon="@drawable/calendar"
+        android:title="Add Schedule Button"
+        app:actionViewClass="com.google.android.material.button.MaterialButton"
+        app:showAsAction="collapseActionView|always"
+        />
 </menu>

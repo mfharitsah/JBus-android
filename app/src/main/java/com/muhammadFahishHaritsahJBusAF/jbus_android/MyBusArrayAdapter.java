@@ -1,10 +1,15 @@
 package com.muhammadFahishHaritsahJBusAF.jbus_android;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,8 +20,8 @@ import com.muhammadFahishHaritsahJBusAF.jbus_android.model.Bus;
 import java.util.List;
 
 public class MyBusArrayAdapter extends ArrayAdapter<Bus> {
-    public MyBusArrayAdapter(@NonNull Context ctx, List<Bus> busList) {
-        super(ctx, 0, busList);
+    public MyBusArrayAdapter(Context ctx, List<Bus> busList) {
+        super(ctx, R.layout.mybus_view, busList);
     }
 
     @NonNull
@@ -26,25 +31,31 @@ public class MyBusArrayAdapter extends ArrayAdapter<Bus> {
         View currentItemView = convertView;
 
         // of the recyclable view is null then inflate the custom layout for the same
-        if (currentItemView == null) {
-            currentItemView = LayoutInflater.from(getContext()).inflate(R.layout.mybus_view, parent, false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.mybus_view, parent, false);
         }
 
         // get the position of the view from the ArrayAdapter
         Bus currentNumberPosition = getItem(position);
 
-        TextView bus_name = currentItemView.findViewById(R.id.bus_name);
-        TextView bus_type = currentItemView.findViewById(R.id.bus_type);
-        TextView departureStation = currentItemView.findViewById(R.id.departure);
-        TextView arrivalStation = currentItemView.findViewById(R.id.arrival);
+        TextView bus_name = convertView.findViewById(R.id.bus_name);
+        TextView bus_type = convertView.findViewById(R.id.bus_type);
+        TextView departureStation = convertView.findViewById(R.id.departure);
+        TextView arrivalStation = convertView.findViewById(R.id.arrival);
 
         bus_name.setText(currentNumberPosition.name);
         bus_type.setText(currentNumberPosition.busType.toString());
-        departureStation.setText(currentNumberPosition.departure);
-        arrivalStation.setText(currentNumberPosition.arrival);
+        departureStation.setText(String.valueOf(currentNumberPosition.departure.city));
+        arrivalStation.setText(String.valueOf(currentNumberPosition.arrival.city));
 
+        convertView.setOnClickListener(v -> {
+//            BusDetailActivity.thisBus = currentNumberPosition;
+            ManageBusActivity.clickedBus = currentNumberPosition;
+            Intent intent = new Intent(parent.getContext(), BusDetailActivity.class);
+            parent.getContext().startActivity(intent);
+        });
 
         // then return the recyclable view
-        return currentItemView;
+        return convertView;
     }
 }

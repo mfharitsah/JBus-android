@@ -5,9 +5,11 @@ import com.muhammadFahishHaritsahJBusAF.jbus_android.model.BaseResponse;
 import com.muhammadFahishHaritsahJBusAF.jbus_android.model.Bus;
 import com.muhammadFahishHaritsahJBusAF.jbus_android.model.BusType;
 import com.muhammadFahishHaritsahJBusAF.jbus_android.model.Facility;
+import com.muhammadFahishHaritsahJBusAF.jbus_android.model.Payment;
 import com.muhammadFahishHaritsahJBusAF.jbus_android.model.Renter;
 import com.muhammadFahishHaritsahJBusAF.jbus_android.model.Station;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import retrofit2.Call;
@@ -39,6 +41,12 @@ public interface BaseApiService {
             @Query("amount") double amount
     );
 
+    @POST("account/{id}/topDown")
+    Call<BaseResponse<Double>> topDown (
+            @Path("id") int id,
+            @Query("amount") double amount
+    );
+
     @POST("account/{id}/registerRenter")
     Call<BaseResponse<Renter>> registerRenter (
             @Path("id") int id,
@@ -48,9 +56,12 @@ public interface BaseApiService {
     );
 
     @GET("bus/getMyBus")
-    Call<List<Bus>> getMyBus (
+    Call<BaseResponse<List<Bus>>> getMyBus (
             @Query("accountId") int accountId
     );
+
+    @GET("bus/getAllBus")
+    Call<List<Bus>> getAllBus ();
 
     @GET("station/getAll")
     Call<List<Station>> getAllStation ();
@@ -65,6 +76,36 @@ public interface BaseApiService {
             @Query("price") int price,
             @Query("stationDepartureId") int stationDepartureId,
             @Query("stationArrivalId") int stationArrivalId
+    );
+
+    @POST("bus/addSchedule")
+    Call<BaseResponse<Bus>> addSchedule (
+            @Query("busId") int busId,
+            @Query("time") Timestamp time
+    );
+
+    @POST("payment/makeBooking")
+    Call<BaseResponse<Payment>> makeBooking(
+            @Query("buyerId") int buyerId,
+            @Query("renterId") int renterId,
+            @Query("busId") int busId,
+            @Query("busSeats") List<String> busSeats,
+            @Query("departureDate") Timestamp departureDate
+    );
+
+    @GET("payment/getAllPayments")
+    Call<List<Payment>> getAllPayments(
+            @Query("accountId") int accountId
+    );
+
+    @POST("payment/{id}/accept")
+    Call<BaseResponse<Payment>> accept (
+            @Path("id") int id
+    );
+
+    @POST("payment/{id}/cancel")
+    Call<BaseResponse<Payment>> cancel (
+            @Path("id") int id
     );
 
 }

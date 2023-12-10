@@ -23,15 +23,6 @@
             android:orientation="horizontal"
             android:gravity="end"
             >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Manage Bus"
-                android:drawableEnd="@drawable/calendar"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"

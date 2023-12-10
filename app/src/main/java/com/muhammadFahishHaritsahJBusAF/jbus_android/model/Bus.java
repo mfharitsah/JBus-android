@@ -9,14 +9,12 @@ public class Bus extends Serializable {
     public int accountId;
     public String name;
     public List<Facility> facilities;
-    public String price;
+    public Price price;
     public int capacity;
     public BusType busType;
-    public String departure;
-    public String arrival;
+    public Station departure;
+    public Station arrival;
     public List<Schedule> schedules;
-    public String departureTime;
-    public String arrivalTime;
 
     public static List<Bus> sampleBusList(int size) {
         List<Bus> busList = new ArrayList<>();
@@ -25,11 +23,11 @@ public class Bus extends Serializable {
             Bus bus = new Bus();
             bus.name = "Buzzes Laju " + i;
             bus.busType = BusType.REGULER;
-            bus.departureTime = i + ".30";
-            bus.arrivalTime = (i+1) + ".30";
-            bus.departure = "Kelapa Gading";
-            bus.arrival = "Pasteur";
-            bus.price = i + "" + (i+3) + "000";
+//            bus.departureTime = i + ".30";
+//            bus.arrivalTime = (i+1) + ".30";
+            bus.departure.stationName = "Kelapa Gading";
+            bus.arrival.stationName = "Pasteur";
+            bus.price.price = 100 + i;
 
             busList.add(bus);
         }
@@ -40,6 +38,7 @@ public class Bus extends Serializable {
     @NonNull
     @Override
     public String toString() {
-        return name;
+        String printLine = "Bus Details = " + " | ID : " + this.id + " | Name : " + this.name + " | Facility : " + this.facilities + " | Price : " + price.toString() + " | Capacity : " + String.valueOf(capacity) + " | Bus Type : " + this.busType + " | Departure : " + this.departure + " | Arrival : " + this.arrival + " | ";
+        return printLine;
     }
 }

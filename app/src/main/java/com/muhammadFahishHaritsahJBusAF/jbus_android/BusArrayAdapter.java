@@ -1,6 +1,7 @@
 package com.muhammadFahishHaritsahJBusAF.jbus_android;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,8 @@ import com.muhammadFahishHaritsahJBusAF.jbus_android.R;
 import com.muhammadFahishHaritsahJBusAF.jbus_android.model.Bus;
 
 public class BusArrayAdapter extends ArrayAdapter<Bus> {
-    public BusArrayAdapter(@NonNull Context context, List<Bus> busList) {
-        super(context, 0, busList);
+    public BusArrayAdapter(@NonNull Context ctx, List<Bus> busList) {
+        super(ctx, R.layout.mybus_view, busList);
     }
 
     @NonNull
@@ -36,26 +37,22 @@ public class BusArrayAdapter extends ArrayAdapter<Bus> {
         Bus currentNumberPosition = getItem(position);
 
         TextView bus_name = currentItemView.findViewById(R.id.bus_name);
-        bus_name.setText(currentNumberPosition.name);
-
         TextView bus_type = currentItemView.findViewById(R.id.bus_type);
-        bus_type.setText(currentNumberPosition.busType.toString());
-
-        TextView departureTime = currentItemView.findViewById(R.id.departure_time);
-        departureTime.setText(currentNumberPosition.departureTime);
-
-        TextView arrivalTime = currentItemView.findViewById(R.id.arrival_time);
-        arrivalTime.setText(currentNumberPosition.arrivalTime);
-
-        TextView departureStation = currentItemView.findViewById(R.id.departure_station);
-        departureStation.setText(currentNumberPosition.departure);
-
-        TextView arrivalStation = currentItemView.findViewById(R.id.arrival_station);
-        arrivalStation.setText(currentNumberPosition.arrival);
-
+        TextView departureCity = currentItemView.findViewById(R.id.departure_city);
+        TextView arrivalCity = currentItemView.findViewById(R.id.arrival_city);
         TextView price = currentItemView.findViewById(R.id.price);
-        price.setText(currentNumberPosition.price);
 
+        bus_name.setText(currentNumberPosition.name);
+        bus_type.setText(currentNumberPosition.busType.toString());
+        departureCity.setText(currentNumberPosition.departure.city.toString());
+        arrivalCity.setText(currentNumberPosition.arrival.city.toString());
+        price.setText(String.valueOf(currentNumberPosition.price.price));
+
+        currentItemView.setOnClickListener(v -> {
+            MainActivity.mainClickedBus = currentNumberPosition;
+            Intent intent = new Intent(parent.getContext(), BusDetailMain.class);
+            parent.getContext().startActivity(intent);
+        });
 
         // then return the recyclable view
         return currentItemView;

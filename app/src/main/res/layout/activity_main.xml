@@ -8,24 +8,6 @@
     android:visibility="visible"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/design_default_color_surface"
-        android:gravity="center"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="This is main activity"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="30dp" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
     <ListView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -39,52 +21,68 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/pagination_footer"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginHorizontal="20dp"
-                >
-                <Button
-                    android:layout_width="56dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/prev_page"
-                    android:layout_weight="1"
-                    android:drawableLeft="@drawable/arrow_prev"
-                    android:minHeight="0dp" />
-                <HorizontalScrollView
-                    android:id="@+id/page_number_scroll"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="25"
-                    android:paddingHorizontal="18dp">
-                    <LinearLayout
-                        android:id="@+id/btn_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"/>
-                </HorizontalScrollView>
-                <Button
-                    android:id="@+id/next_page"
-                    android:layout_width="56dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableLeft="@drawable/arrow_next"
-                    android:minHeight="0dp" />
+<!--        <FrameLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent">-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/pagination_footer"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:gravity="center"-->
+<!--                android:layout_marginHorizontal="20dp"-->
+<!--                >-->
+<!--                <Button-->
+<!--                    android:layout_width="56dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/prev_page"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:drawableLeft="@drawable/arrow_prev"-->
+<!--                    />-->
+<!--                <HorizontalScrollView-->
+<!--                    android:id="@+id/page_number_scroll"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="25"-->
+<!--                    android:paddingHorizontal="18dp">-->
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/btn_layout"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:orientation="horizontal"/>-->
+<!--                </HorizontalScrollView>-->
+<!--                <Button-->
+<!--                    android:id="@+id/next_page"-->
+<!--                    android:layout_width="56dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:drawableLeft="@drawable/arrow_next"-->
+<!--                    />-->
 
 
-            </LinearLayout>
-        </FrameLayout>
+<!--            </LinearLayout>-->
+<!--        </FrameLayout>-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/bottom_navbar_layout"
+        android:elevation="6dp"
+        app:menu="@menu/action_bar"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@drawable/bottom_navbar_selector"
+        app:itemRippleColor="@android:color/transparent"
+        app:labelVisibilityMode="auto"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

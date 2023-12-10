@@ -82,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                 // if success finish this activity (back to login activity)
                 if (res.success) {
                     loggedAccount = res.payload;
+                    MainActivity.mainLoggedAccount = loggedAccount;
                     moveActivity(mContext, MainActivity.class);
                     Toast.makeText(mContext, "Berhasil login", Toast.LENGTH_SHORT).show();
                     finish();

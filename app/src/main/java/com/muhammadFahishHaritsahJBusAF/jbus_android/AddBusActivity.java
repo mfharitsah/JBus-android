@@ -3,6 +3,7 @@ package com.muhammadFahishHaritsahJBusAF.jbus_android;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -42,7 +43,6 @@ public class AddBusActivity extends AppCompatActivity {
     private BaseApiService mApiService;
     private List<Facility> selectedFacilities = new ArrayList<>();
 
-
     private EditText busName, busCapacity, busPrice;
     private CheckBox ac, wifi, toilet, lcd;
     private CheckBox coolbox, lunch, baggage, electric;
@@ -51,6 +51,10 @@ public class AddBusActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bus);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
         //API Service
         mContext = this;
@@ -129,6 +133,7 @@ public class AddBusActivity extends AppCompatActivity {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
                         departureStation = stationList.get(position);
+                        selectedDeptStationID = departureStation.id;
                     }
 
                     @Override
@@ -143,6 +148,7 @@ public class AddBusActivity extends AppCompatActivity {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
                         arrivalStation = stationList.get(position);
+                        selectedArrStationID = arrivalStation.id;
                     }
 
                     @Override
@@ -190,7 +196,7 @@ public class AddBusActivity extends AppCompatActivity {
         int price = Integer.parseInt(busPrice.getText().toString());
 
 
-        mApiService.create(LoginActivity.loggedAccount.id, nameS, capacity, selectedFacilities, selectedBusType, price, selectedDeptStationID, selectedArrStationID )
+        mApiService.create(LoginActivity.loggedAccount.id, nameS, capacity, selectedFacilities, BusType.REGULER, price, selectedDeptStationID, selectedArrStationID )
                 .enqueue(new Callback<BaseResponse<Bus>>() {
             @Override
             public void onResponse(Call<BaseResponse<Bus>> call, Response<BaseResponse<Bus>> response) {
@@ -201,7 +207,7 @@ public class AddBusActivity extends AppCompatActivity {
                 BaseResponse<Bus> res = response.body();
                 if(res.success){
                     viewToast(mContext, "Success Add Bus");
-                    finish();
+                    moveActivity(mContext, ManageBusActivity.class);
                 }
                 Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
             }
@@ -211,5 +217,10 @@ public class AddBusActivity extends AppCompatActivity {
                 Toast.makeText(mContext, "Server ERROR", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void moveActivity(Context context, Class<?> cls) {
+        Intent intent = new Intent(context, cls);
+        startActivity(intent);
     }
 }

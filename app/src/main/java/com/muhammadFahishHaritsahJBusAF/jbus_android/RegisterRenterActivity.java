@@ -70,6 +70,7 @@ public class RegisterRenterActivity extends AppCompatActivity {
                 BaseResponse<Renter> res = response.body();
 
                 if (res.success) {
+                    account.company = res.payload;
                     moveActivity(mContext, MainActivity.class);
                     finish();
                 }

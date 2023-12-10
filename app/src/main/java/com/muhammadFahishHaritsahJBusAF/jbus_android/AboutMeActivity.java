@@ -1,16 +1,21 @@
 package com.muhammadFahishHaritsahJBusAF.jbus_android;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.muhammadFahishHaritsahJBusAF.jbus_android.model.Account;
 import com.muhammadFahishHaritsahJBusAF.jbus_android.model.BaseResponse;
 import com.muhammadFahishHaritsahJBusAF.jbus_android.request.BaseApiService;
@@ -52,7 +57,7 @@ public class AboutMeActivity extends AppCompatActivity {
         topUpButton = findViewById(R.id.topup_button);
 
         //Register Renter
-        registerRenter = findViewById(R.id.button);
+        registerRenter = findViewById(R.id.button_manage);
 
 
         if (LoginActivity.loggedAccount != null) {
@@ -71,7 +76,7 @@ public class AboutMeActivity extends AppCompatActivity {
             textView.setText("Interest develop your own buses?");
 
             // Implement a listener for a component to navigate to the registration page
-            Button buttonStatus = findViewById(R.id.button);
+            Button buttonStatus = findViewById(R.id.button_manage);
             buttonStatus.setText("Register your company!");
 
             registerRenter.setOnClickListener(e -> {
@@ -83,7 +88,7 @@ public class AboutMeActivity extends AppCompatActivity {
             textView.setText("Manage your buses now?");
 
             // Implement a listener for a component to navigate to the registration page
-            Button buttonStatus = findViewById(R.id.button);
+            Button buttonStatus = findViewById(R.id.button_manage);
             buttonStatus.setText("Manage now");
 
             registerRenter.setOnClickListener(e -> {
@@ -94,6 +99,24 @@ public class AboutMeActivity extends AppCompatActivity {
 
         topUpButton.setOnClickListener(e -> {
             handleTopUp();
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.nav_profile);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.nav_home) {
+                moveActivity(this, MainActivity.class);
+                finish();
+                return true;
+            } else if (item.getItemId() == R.id.nav_profile) {
+                return true;
+            } else if (item.getItemId() == R.id.nav_payment) {
+                moveActivity(this, PaymentActivity.class);
+                finish();
+                return true;
+            }
+            return false;
         });
     }
 
@@ -130,6 +153,31 @@ public class AboutMeActivity extends AppCompatActivity {
                 Toast.makeText(mContext, "There is a problem with the server", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.setting_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected( @NonNull MenuItem item ) {
+
+        if (item.getItemId() == R.id.log_out) {
+            LoginActivity.loggedAccount = null;
+            moveActivity(this, LoginActivity.class);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+    private void moveActivity(Context context, Class<?> cls) {
+        Intent intent = new Intent(context, cls);
+        startActivity(intent);
+    }
+
 }
