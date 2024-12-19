@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="sky">#007BFF</color>
     <color name="sun">#FEDE00</color>
+    <color name="alert">#ff4545</color>
 </resources>
