@@ -10,4 +10,8 @@
     <color name="sky">#007BFF</color>
     <color name="sun">#FEDE00</color>
     <color name="alert">#ff4545</color>
+    <color name="bg_white">#EAEFF5</color>
+    <color name="cream">#FBF8D4</color>
+    <color name="grey">#7393B3</color>
+    <color name="success">#22bb33</color>
 </resources>

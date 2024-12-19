@@ -5,7 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/bus_card"
     android:layout_margin="10dp"
+    app:cardCornerRadius="10dp"
+    android:elevation="10dp"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,12 +26,13 @@
             android:text="Cititrans"
             android:textSize="25sp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/bus_type"
-            android:text="Shuttle Toyota HiAce"
+            android:text="REGULAR"
             android:textSize="17sp"
             />
         <LinearLayout
@@ -39,52 +43,30 @@
             android:layout_marginTop="10dp"
             >
             <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/departure_time"
-                android:text="18.30"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/departure_station"
+                android:id="@+id/departure_city"
                 android:text="Kelapa Gading"
                 android:textSize="20sp"
-                />
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="to"
-            android:textSize="17sp"
-            android:layout_marginHorizontal="11dp"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingHorizontal="10dp"
-            >
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/arrival_time"
-                android:text="20.30"
                 android:textStyle="bold"
-                android:textSize="20sp"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/arrival_station"
+                android:drawableStart="@drawable/arrow"
+                android:drawableTint="@color/sky"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/arrival_city"
                 android:text="Pasteur"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 />
         </LinearLayout>
-
-
 
         <LinearLayout
             android:layout_width="wrap_content"

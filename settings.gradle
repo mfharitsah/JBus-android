@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "jsleep-android"
+rootProject.name = "JBus-android"
 include ':app'
